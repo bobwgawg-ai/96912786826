@@ -222,31 +222,30 @@
 		makefolder(library.directory .. path)
 	end 
 
--- Download Poppins Bold
-writefile("Poppins-Bold.ttf", game:HttpGet("https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Bold.ttf"))
+-- Download Bebas Neue
+writefile("BebasNeue.ttf", game:HttpGet("https://github.com/google/fonts/raw/main/ofl/bebasneue/BebasNeue-Regular.ttf"))
 
--- Define the Poppins Bold font for your library
-local poppins = {
-	name = "Poppins",
+-- Define the Bebas Neue font for your library
+local bebas = {
+	name = "Bebas Neue",
 	faces = {
 		{
-			name = "Bold",
-			weight = 700,
+			name = "Regular",
+			weight = 400,
 			style = "normal",
-			assetId = getcustomasset("Poppins-Bold.ttf")
+			assetId = getcustomasset("BebasNeue.ttf")
 		}
 	}
 }
 
--- Save the font definition
-writefile("PoppinsBold.json", game:GetService("HttpService"):JSONEncode(poppins))
+-- Save the font definition (optional, keeps structure consistent)
+writefile("BebasNeue.json", game:GetService("HttpService"):JSONEncode(bebas))
 
 -- Apply it to your library
-library.font = Font.new(getcustomasset("Poppins-Bold.ttf"), Enum.FontWeight.Bold)
+library.font = Font.new(getcustomasset("BebasNeue.ttf"), Enum.FontWeight.Regular)
 
 -- If you had a config_holder or similar object using the old font
 local config_holder
--- 
 
 -- library functions 
 	-- misc functions
