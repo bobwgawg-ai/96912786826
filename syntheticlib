@@ -107,12 +107,12 @@
 		preset = {
 			["outline"] = hex("#0A0A0A"), -- 
 			["inline"] = hex("#2D2D2D"), --
-			["accent"] = hex("#2bb9ff"), --
+			["accent"] = hex("#2ba9ff"), --
 			["high_contrast"] = hex("#141414"),
 			["low_contrast"] = hex("#1E1E1E"),
 			["text"] = hex("#B4B4B4"),
 			["text_outline"] = rgb(0, 0, 0),
-			["glow"] = hex("#2bb9ff"), 
+			["glow"] = hex("#2ba9ff"), 
 		},
 
 		utility = {
@@ -222,44 +222,31 @@
 		makefolder(library.directory .. path)
 	end 
 
--- Download Bebas Neue
-if not isfile("BebasNeue.ttf") then
-	writefile("BebasNeue.ttf", game:HttpGet("https://github.com/google/fonts/raw/main/ofl/bebasneue/BebasNeue-Regular.ttf"))
-end
+library.__index = library
 
--- Define the Bebas Neue font for your library
-local bebas = {
-	name = "Bebas Neue",
-	faces = {
-		{
-			name = "Regular",
-			weight = 400,
-			style = "normal",
-			assetId = getcustomasset("BebasNeue.ttf")
-		}
-	}
+for _, path in next, library.folders do 
+    makefolder(library.directory .. path)
+end 
+
+-- Download Poppins Bold font
+writefile("poppins.ttf", game:HttpGet("https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Bold.ttf"))
+
+local poppinsFont = {
+    name = "Poppins",
+    faces = {
+        {
+            name = "Bold",
+            weight = 700,
+            style = "normal",
+            assetId = getcustomasset("poppins.ttf")
+        }
+    }
 }
 
--- Save the font definition
-writefile("BebasNeue.json", game:GetService("HttpService"):JSONEncode(bebas))
+writefile("poppins_encoded.ttf", http_service:JSONEncode(poppinsFont))
 
--- Apply the font
-library.font = Font.new(getcustomasset("BebasNeue.ttf"), Enum.FontWeight.Regular)
-
--- Optional: force all text to uppercase automatically
--- (wrap your library’s text setter or modify directly)
-local old_set_text = library.SetText or function(obj, text)
-	if obj and obj.Text ~= nil then
-		obj.Text = string.upper(text)
-	end
-end
-
-library.SetText = function(obj, text)
-	old_set_text(obj, string.upper(text))
-end
-
--- Example usage:
--- library.SetText(someLabel, "combat") --> shows as "COMBAT"
+-- Use Poppins Bold for the library font
+library.font = Font.new(getcustomasset("poppins_encoded.ttf"), Enum.FontWeight.Bold)
 
 local config_holder
 
