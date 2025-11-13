@@ -222,25 +222,30 @@
 		makefolder(library.directory .. path)
 	end 
 
-	writefile("Poppins.ttf", game:HttpGet("https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Regular.ttf"))
+-- Download Poppins Bold
+writefile("Poppins-Bold.ttf", game:HttpGet("https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Bold.ttf"))
 
-	local tahoma = {
-		name = "SmallestPixel7",
-		faces = {
-			{
-				name = "Regular",
-				weight = 400,
-				style = "normal",
-				assetId = getcustomasset("ffff.ttf")
-			}
+-- Define the Poppins Bold font for your library
+local poppins = {
+	name = "Poppins",
+	faces = {
+		{
+			name = "Bold",
+			weight = 700,
+			style = "normal",
+			assetId = getcustomasset("Poppins-Bold.ttf")
 		}
 	}
+}
 
-	writefile("dddd.ttf", http_service:JSONEncode(tahoma))
+-- Save the font definition
+writefile("PoppinsBold.json", game:GetService("HttpService"):JSONEncode(poppins))
 
-	library.font = Font.new(getcustomasset("dddd.ttf"), Enum.FontWeight.Regular)
+-- Apply it to your library
+library.font = Font.new(getcustomasset("Poppins-Bold.ttf"), Enum.FontWeight.Bold)
 
-	local config_holder 
+-- If you had a config_holder or similar object using the old font
+local config_holder
 -- 
 
 -- library functions 
