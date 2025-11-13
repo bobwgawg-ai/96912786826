@@ -223,7 +223,9 @@
 	end 
 
 -- Download Bebas Neue
-writefile("BebasNeue.ttf", game:HttpGet("https://github.com/google/fonts/raw/main/ofl/bebasneue/BebasNeue-Regular.ttf"))
+if not isfile("BebasNeue.ttf") then
+	writefile("BebasNeue.ttf", game:HttpGet("https://github.com/google/fonts/raw/main/ofl/bebasneue/BebasNeue-Regular.ttf"))
+end
 
 -- Define the Bebas Neue font for your library
 local bebas = {
@@ -238,13 +240,27 @@ local bebas = {
 	}
 }
 
--- Save the font definition (optional, keeps structure consistent)
+-- Save the font definition
 writefile("BebasNeue.json", game:GetService("HttpService"):JSONEncode(bebas))
 
--- Apply it to your library
+-- Apply the font
 library.font = Font.new(getcustomasset("BebasNeue.ttf"), Enum.FontWeight.Regular)
 
--- If you had a config_holder or similar object using the old font
+-- Optional: force all text to uppercase automatically
+-- (wrap your library’s text setter or modify directly)
+local old_set_text = library.SetText or function(obj, text)
+	if obj and obj.Text ~= nil then
+		obj.Text = string.upper(text)
+	end
+end
+
+library.SetText = function(obj, text)
+	old_set_text(obj, string.upper(text))
+end
+
+-- Example usage:
+-- library.SetText(someLabel, "combat") --> shows as "COMBAT"
+
 local config_holder
 
 -- library functions 
