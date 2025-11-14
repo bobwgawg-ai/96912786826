@@ -1798,7 +1798,7 @@ local config_holder
 					
 			-- esp preview
 				local holder = library:panel({
-					name = "ESP Preview", 
+					name = "Synthetic Loader", 
 					anchor_point = vec2(0, 0),
 					size = dim2(0, 300, 0, 325),
 					position = dim2(0, style.items.main_holder.AbsolutePosition.X, 0, style.items.main_holder.AbsolutePosition.Y + style.items.main_holder.AbsoluteSize.Y + 2),
