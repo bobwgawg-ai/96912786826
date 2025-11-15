@@ -226,27 +226,26 @@ library.__index = library
 
 for _, path in next, library.folders do 
     makefolder(library.directory .. path)
-end 
+end
 
--- Download VISITOR TT1 BRK (exact pixel font)
-writefile("visitor.ttf", game:HttpGet("https://github.com/kreativekorp/open-relik/raw/master/Fonts/Visitor/visitor2.ttf"))
+-- Download Pixel Operator Bold (Roblox compatible pixel font)
+writefile("pixelop.ttf", game:HttpGet("https://github.com/IdreesInc/Monocraft/raw/master/pixel-operator/PixelOperator-Bold.ttf"))
 
-local visitorFont = {
-    name = "Visitor",
+local pixelfont = {
+    name = "PixelOperator",
     faces = {
         {
-            name = "Regular",
-            weight = 400,
+            name = "Bold",
+            weight = 700,
             style = "normal",
-            assetId = getcustomasset("visitor.ttf")
+            assetId = getcustomasset("pixelop.ttf")
         }
     }
 }
 
-writefile("visitor_encoded.ttf", http_service:JSONEncode(visitorFont))
+writefile("pixelop_encoded.ttf", http_service:JSONEncode(pixelfont))
 
--- Apply Visitor font to UI library
-library.font = Font.new(getcustomasset("visitor_encoded.ttf"), Enum.FontWeight.Regular)
+library.font = Font.new(getcustomasset("pixelop_encoded.ttf"), Enum.FontWeight.Bold)
 
 local config_holder
 
