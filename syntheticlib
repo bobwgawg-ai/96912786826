@@ -222,30 +222,25 @@
 		makefolder(library.directory .. path)
 	end 
 
-library.__index = library
+library.__index = library 
 
-for _, path in next, library.folders do 
-    makefolder(library.directory .. path)
+for _, path in next, library.folders do
+	makefolder(library.directory .. path)
 end
 
--- Download Pixel Operator Bold (Roblox compatible pixel font)
-writefile("pixelop.ttf", game:HttpGet("https://github.com/IdreesInc/Monocraft/raw/master/pixel-operator/PixelOperator-Bold.ttf"))
+-- Download Pixel Operator Bold font
+local url = "https://github.com/IdreesInc/Monocraft/raw/master/pixel-operator/PixelOperator-Bold.ttf"
+writefile("pixelop.ttf", game:HttpGet(url))
 
-local pixelfont = {
-    name = "PixelOperator",
-    faces = {
-        {
-            name = "Bold",
-            weight = 700,
-            style = "normal",
-            assetId = getcustomasset("pixelop.ttf")
-        }
-    }
-}
+-- Create a FontFace directly from the .ttf file
+local pixelFont = Font.new(
+	getcustomasset("pixelop.ttf"),
+	Enum.FontWeight.Bold,
+	Enum.FontStyle.Normal
+)
 
-writefile("pixelop_encoded.ttf", http_service:JSONEncode(pixelfont))
-
-library.font = Font.new(getcustomasset("pixelop_encoded.ttf"), Enum.FontWeight.Bold)
+-- Apply to library
+library.font = pixelFont
 
 local config_holder
 
