@@ -228,25 +228,25 @@ for _, path in next, library.folders do
     makefolder(library.directory .. path)
 end 
 
--- Download Poppins Bold font
-writefile("poppins.ttf", game:HttpGet("https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Bold.ttf"))
+-- Download VISITOR TT1 BRK (exact pixel font)
+writefile("visitor.ttf", game:HttpGet("https://github.com/kreativekorp/open-relik/raw/master/Fonts/Visitor/visitor2.ttf"))
 
-local poppinsFont = {
-    name = "Poppins",
+local visitorFont = {
+    name = "Visitor",
     faces = {
         {
-            name = "Bold",
-            weight = 700,
+            name = "Regular",
+            weight = 400,
             style = "normal",
-            assetId = getcustomasset("poppins.ttf")
+            assetId = getcustomasset("visitor.ttf")
         }
     }
 }
 
-writefile("poppins_encoded.ttf", http_service:JSONEncode(poppinsFont))
+writefile("visitor_encoded.ttf", http_service:JSONEncode(visitorFont))
 
--- Use Poppins Bold for the library font
-library.font = Font.new(getcustomasset("poppins_encoded.ttf"), Enum.FontWeight.Bold)
+-- Apply Visitor font to UI library
+library.font = Font.new(getcustomasset("visitor_encoded.ttf"), Enum.FontWeight.Regular)
 
 local config_holder
 
