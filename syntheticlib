@@ -235,27 +235,27 @@ for _, path in next, library.folders do
     makefolder(library.directory .. path)
 end
 
--- Download Minecraft font
-writefile("minecraft.ttf", game:HttpGet("https://cdn.discordapp.com/attachments/1438028907130519572/1439473085848879265/Minecraft.ttf?ex=691aa547&is=691953c7&hm=10dce2b43ec256cb94c3c3f4bfeaec20e9dc60c15816d8cc842703e187f494e0&"))
+-- Download Visitor1 font
+writefile("visitor1.ttf", game:HttpGet("https://cdn.discordapp.com/attachments/1438028907130519572/1439474515846500412/visitor1.ttf?ex=691aa69c&is=6919551c&hm=ed644797cb61d45d98f8562d35d9eea17a39dceef0924738c9d7f5245ac2cd0c&"))
 
--- Create Minecraft font object
-local minecraftFont = {
-    name = "Minecraft",
+-- Create Visitor1 font object
+local visitorFont = {
+    name = "Visitor1",
     faces = {
         {
             name = "Regular",
             weight = 400,
             style = "normal",
-            assetId = getcustomasset("minecraft.ttf")
+            assetId = getcustomasset("visitor1.ttf")
         }
     }
 }
 
 -- Save encoded font to file
-writefile("minecraft_encoded.ttf", http_service:JSONEncode(minecraftFont))
+writefile("visitor1_encoded.ttf", http_service:JSONEncode(visitorFont))
 
--- Apply Minecraft font to the library
-library.font = Font.new(getcustomasset("minecraft_encoded.ttf"), Enum.FontWeight.Regular)
+-- Apply Visitor1 font to the library
+library.font = Font.new(getcustomasset("visitor1_encoded.ttf"), Enum.FontWeight.Regular)
 
 local config_holder
 
