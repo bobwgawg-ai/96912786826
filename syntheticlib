@@ -235,27 +235,28 @@ for _, path in next, library.folders do
     makefolder(library.directory .. path)
 end
 
--- Download Visitor1 font
-writefile("visitor1.ttf", game:HttpGet("https://cdn.discordapp.com/attachments/1438028907130519572/1439474515846500412/visitor1.ttf?ex=691aa69c&is=6919551c&hm=ed644797cb61d45d98f8562d35d9eea17a39dceef0924738c9d7f5245ac2cd0c&"))
+-- Download 8‑Bit Wonder font
+writefile("8bitwonder.ttf", game:HttpGet("https://resourceboy.com/fonts/8-bit-wonder-font/"))  
+-- ^ replace URL with the direct .ttf link when you host / find it
 
--- Create Visitor1 font object
-local visitorFont = {
-    name = "Visitor1",
+-- Create font object
+local pixelFont = {
+    name = "8BitWonder",
     faces = {
         {
             name = "Regular",
             weight = 400,
             style = "normal",
-            assetId = getcustomasset("visitor1.ttf")
+            assetId = getcustomasset("8bitwonder.ttf")
         }
     }
 }
 
 -- Save encoded font to file
-writefile("visitor1_encoded.ttf", http_service:JSONEncode(visitorFont))
+writefile("8bitwonder_encoded.ttf", http_service:JSONEncode(pixelFont))
 
--- Apply Visitor1 font to the library
-library.font = Font.new(getcustomasset("visitor1_encoded.ttf"), Enum.FontWeight.Regular)
+-- Apply to the library
+library.font = Font.new(getcustomasset("8bitwonder_encoded.ttf"), Enum.FontWeight.Regular)
 
 local config_holder
 
