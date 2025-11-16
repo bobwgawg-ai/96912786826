@@ -228,38 +228,6 @@ for _, path in next, library.folders do
 	makefolder(library.directory .. path)
 end
 
-library.__index = library
-
--- Ensure all library folders exist
-for _, path in next, library.folders do
-    makefolder(library.directory .. path)
-end
-
--- Download 8‑Bit Wonder font
-writefile("8bitwonder.ttf", game:HttpGet("https://cdn.discordapp.com/attachments/1438028907130519572/1439481311596118168/8-BIT_WONDER.TTF?ex=691aacf0&is=69195b70&hm=99d11323f051b22799690440ca6d0fe9baa5049397b8f62fca4d21b6af426df9&"))  
--- ^ replace URL with the direct .ttf link when you host / find it
-
--- Create font object
-local pixelFont = {
-    name = "8BitWonder",
-    faces = {
-        {
-            name = "Regular",
-            weight = 400,
-            style = "normal",
-            assetId = getcustomasset("8bitwonder.ttf")
-        }
-    }
-}
-
--- Save encoded font to file
-writefile("8bitwonder_encoded.ttf", http_service:JSONEncode(pixelFont))
-
--- Apply to the library
-library.font = Font.new(getcustomasset("8bitwonder_encoded.ttf"), Enum.FontWeight.Regular)
-
-local config_holder
-
 -- library functions 
 	-- misc functions
 		function library:hoverify(hover, parent) 
