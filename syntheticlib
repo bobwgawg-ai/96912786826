@@ -228,20 +228,21 @@ for _, path in next, library.folders do
 	makefolder(library.directory .. path)
 end
 
--- Download Pixel Operator Bold
-local path = "pixelop.ttf"
-writefile(path, game:HttpGet("https://github.com/IdreesInc/Monocraft/raw/master/pixel-operator/PixelOperator-Bold.ttf"))
+-- Working Pixel Operator Bold (valid TTF)
+local url = "https://raw.githubusercontent.com/Tecate/bitmap-fonts/master/PixelOperator/PixelOperator-Bold.ttf"
+local file = "pixelop.ttf"
 
--- Load through getcustomasset()
-local asset = getcustomasset(path)
+writefile(file, game:HttpGet(url))
 
--- Create FontFace
-local pixelFont = Font.new(asset, Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+local pixelFont = Font.new(
+    getcustomasset(file),
+    Enum.FontWeight.Bold,
+    Enum.FontStyle.Normal
+)
 
--- Apply to library
 library.font = pixelFont
 
-print("Loaded custom font:", asset)
+print("Pixel Operator loaded successfully!")
 
 -- library functions 
 	-- misc functions
