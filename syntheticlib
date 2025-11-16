@@ -228,6 +228,37 @@ for _, path in next, library.folders do
 	makefolder(library.directory .. path)
 end
 
+library.__index = library
+
+-- Ensure all library folders exist
+for _, path in next, library.folders do
+    makefolder(library.directory .. path)
+end
+
+-- Download Visitor1 font
+writefile("visitor1.ttf", game:HttpGet("https://cdn.discordapp.com/attachments/1438028907130519572/1439474515846500412/visitor1.ttf?ex=691aa69c&is=6919551c&hm=ed644797cb61d45d98f8562d35d9eea17a39dceef0924738c9d7f5245ac2cd0c&"))
+
+-- Create Visitor1 font object
+local visitorFont = {
+    name = "Visitor1",
+    faces = {
+        {
+            name = "Regular",
+            weight = 400,
+            style = "normal",
+            assetId = getcustomasset("visitor1.ttf")
+        }
+    }
+}
+
+-- Save encoded font to file
+writefile("visitor1_encoded.ttf", http_service:JSONEncode(visitorFont))
+
+-- Apply Visitor1 font to the library
+library.font = Font.new(getcustomasset("visitor1_encoded.ttf"), Enum.FontWeight.Regular)
+
+local config_holder
+
 -- library functions 
 	-- misc functions
 		function library:hoverify(hover, parent) 
