@@ -228,23 +228,36 @@ for _, path in next, library.folders do
 	makefolder(library.directory .. path)
 end
 
--- Download Pixel Operator Bold font (working Discord CDN link)
-local url = "https://cdn.discordapp.com/attachments/1438028907130519572/1439429291749150821/PixelOperator-Bold.ttf?ex=691a7c7e&is=69192afe&hm=3617e9d706abaa9a51d503d3515df9cc38c667dc88d5f31b595e33baa631c88a&"
+library.__index = library
 
--- Save it locally
-writefile("pixelop.ttf", game:HttpGet(url))
+-- Ensure all library folders exist
+for _, path in next, library.folders do
+    makefolder(library.directory .. path)
+end
 
--- Create a FontFace from the .ttf
-local pixelFont = Font.new(
-    getcustomasset("pixelop.ttf"),
-    Enum.FontWeight.Bold,
-    Enum.FontStyle.Normal
-)
+-- Download Pixel Operator Bold font from Discord CDN
+writefile("pixelop.ttf", game:HttpGet("https://cdn.discordapp.com/attachments/1438028907130519572/1439429291749150821/PixelOperator-Bold.ttf?ex=691a7c7e&is=69192afe&hm=3617e9d706abaa9a51d503d3515df9cc38c667dc88d5f31b595e33baa631c88a&"))
 
--- Apply to your library
-library.font = pixelFont
+-- Create Pixel Operator font object (encoded JSON)
+local pixelFont = {
+    name = "PixelOperator",
+    faces = {
+        {
+            name = "Bold",
+            weight = 700,
+            style = "normal",
+            assetId = getcustomasset("pixelop.ttf")
+        }
+    }
+}
 
-print("✅ Loaded Synthetic")
+-- Save encoded font to file
+writefile("pixelop_encoded.ttf", http_service:JSONEncode(pixelFont))
+
+-- Apply Pixel Operator Bold to the library
+library.font = Font.new(getcustomasset("pixelop_encoded.ttf"), Enum.FontWeight.Bold)
+
+local config_holder
 
 -- library functions 
 	-- misc functions
