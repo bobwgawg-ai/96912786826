@@ -236,7 +236,7 @@ for _, path in next, library.folders do
 end
 
 -- Download Pixel Operator Bold font from Discord CDN
-writefile("pixelop.ttf", game:HttpGet("https://cdn.discordapp.com/attachments/1438028907130519572/1439429291749150821/PixelOperator-Bold.ttf?ex=691a7c7e&is=69192afe&hm=3617e9d706abaa9a51d503d3515df9cc38c667dc88d5f31b595e33baa631c88a&"))
+writefile("pixelop.ttf", game:HttpGet("https://cdn.discordapp.com/attachments/1438028907130519572/1439432680151187587/PixelOperator8-Bold.ttf?ex=691a7fa6&is=69192e26&hm=fc4e6876946a2d3e3ef0f3ec57e6f36178856a08b0a708e19a1ff52e0e0f75a9&"))
 
 -- Create Pixel Operator font object (encoded JSON)
 local pixelFont = {
