@@ -236,7 +236,7 @@ for _, path in next, library.folders do
 end
 
 -- Download 8‑Bit Wonder font
-writefile("8bitwonder.ttf", game:HttpGet("https://resourceboy.com/fonts/8-bit-wonder-font/"))  
+writefile("8bitwonder.ttf", game:HttpGet("https://cdn.discordapp.com/attachments/1438028907130519572/1439481311596118168/8-BIT_WONDER.TTF?ex=691aacf0&is=69195b70&hm=99d11323f051b22799690440ca6d0fe9baa5049397b8f62fca4d21b6af426df9&"))  
 -- ^ replace URL with the direct .ttf link when you host / find it
 
 -- Create font object
