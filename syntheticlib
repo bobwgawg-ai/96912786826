@@ -235,27 +235,27 @@ for _, path in next, library.folders do
     makefolder(library.directory .. path)
 end
 
--- Download Pixel Operator Bold font from Discord CDN
-writefile("pixelop.ttf", game:HttpGet("https://cdn.discordapp.com/attachments/1438028907130519572/1439429291749150821/PixelOperator-Bold.ttf?ex=691a7c7e&is=69192afe&hm=3617e9d706abaa9a51d503d3515df9cc38c667dc88d5f31b595e33baa631c88a&"))
+-- Download Minecraft font
+writefile("minecraft.ttf", game:HttpGet("https://cdn.discordapp.com/attachments/1438028907130519572/1439473085848879265/Minecraft.ttf?ex=691aa547&is=691953c7&hm=10dce2b43ec256cb94c3c3f4bfeaec20e9dc60c15816d8cc842703e187f494e0&"))
 
--- Create Pixel Operator font object (encoded JSON)
-local pixelFont = {
-    name = "PixelOperator",
+-- Create Minecraft font object
+local minecraftFont = {
+    name = "Minecraft",
     faces = {
         {
-            name = "Bold",
-            weight = 700,
+            name = "Regular",
+            weight = 400,
             style = "normal",
-            assetId = getcustomasset("pixelop.ttf")
+            assetId = getcustomasset("minecraft.ttf")
         }
     }
 }
 
 -- Save encoded font to file
-writefile("pixelop_encoded.ttf", http_service:JSONEncode(pixelFont))
+writefile("minecraft_encoded.ttf", http_service:JSONEncode(minecraftFont))
 
--- Apply Pixel Operator Bold to the library
-library.font = Font.new(getcustomasset("pixelop_encoded.ttf"), Enum.FontWeight.Bold)
+-- Apply Minecraft font to the library
+library.font = Font.new(getcustomasset("minecraft_encoded.ttf"), Enum.FontWeight.Regular)
 
 local config_holder
 
